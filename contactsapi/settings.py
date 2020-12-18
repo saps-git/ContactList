@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 import os
 from pathlib import Path
+import django_heroku
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -40,7 +42,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'drf_yasg',
     'authentication',
-    'contacts'
+    'contacts',
+    'corsheaders',
 ]
 
 SWAGGER_SETTINGS = { #here we define every config specific to SWAGGER api testing
@@ -67,6 +70,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'contactsapi.urls'
@@ -133,6 +138,16 @@ USE_L10N = True
 
 USE_TZ = True
 
+## CORS (adding Cross-Origin Resource Sharing (CORS) headers to responses. This allows in-browser requests 
+#        to your Django application from other origins, like React fronted)
+CORS_ALLOWED_ORIGINS = [
+    "https://example.com",
+    "https://sub.example.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:9000"
+]
+
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
@@ -140,3 +155,7 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 JWT_SECRET_KEY = os.environ.get('JWT_SECRET_KEY') # this should be kept secret, i.e not upload on git or anywhere
+
+django_heroku.settings(locals())
+
+## GUNICORN gives us a HTTP server so that it can run on Heroku, as local server is not fit for production
