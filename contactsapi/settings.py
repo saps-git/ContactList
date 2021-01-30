@@ -27,7 +27,7 @@ SECRET_KEY = '7v2-3_3y(0wx!x@ph5-1-8r08+up9*pi18jpdd&*2u^26-=l!x'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -141,8 +141,7 @@ USE_TZ = True
 ## CORS (adding Cross-Origin Resource Sharing (CORS) headers to responses. This allows in-browser requests 
 #        to your Django application from other origins, like React fronted)
 CORS_ALLOWED_ORIGINS = [
-    "https://example.com",
-    "https://sub.example.com",
+    "https://true-contacts.herokuapp.com",
     "http://localhost:3000",
     "http://127.0.0.1:9000",
     "http://127.0.0.1:8080"
@@ -151,8 +150,6 @@ CORS_ALLOWED_ORIGINS = [
 CORS_ORIGIN_REGEX_WHITELIST = [
     r"^https://\w+\.netlify\.app$",
 ]
-
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
