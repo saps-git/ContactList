@@ -140,16 +140,18 @@ USE_TZ = True
 
 ## CORS (adding Cross-Origin Resource Sharing (CORS) headers to responses. This allows in-browser requests 
 #        to your Django application from other origins, like React fronted)
-CORS_ORIGIN_WHITELIST = [
+CORS_ORIGIN_WHITELIST = (
     "https://true-contacts.herokuapp.com",
     "http://localhost:3000",
     "http://127.0.0.1:9000",
     "http://127.0.0.1:8080"
-]
+)
 
 CORS_ORIGIN_REGEX_WHITELIST = [
     r"^https://\w+\.netlify\.app$",
 ]
+
+#CORS_ALLOW_ALL_ORIGINS
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
